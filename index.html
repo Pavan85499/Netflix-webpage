@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflixpavan Clone</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <header>
@@ -18,6 +19,11 @@
                 <li><button>Movies</button></li>
                 <li><button>Recently Added</button></li>
                 <li><button>My List</button></li>
+                <li>
+                    <div class="search-continer">
+                        <input type="search" class="search-bar" placeholder="Search for more....">
+                    </div>
+                </li>
             </ul>
         </nav>
         <div class="user">
@@ -25,20 +31,26 @@
         </div>
     </header>
     <main>
+    <figure>
         <div class="slider">
-            <div class="slides">
-                <div class="slide"><img src="image1.jpg" alt="Image 1"></div>
-                <div class="slide"><img src="image2.jpg" alt="Image 2"></div>
-                <div class="slide"><img src="image3.jpg" alt="Image 3"></div>
-                <div class="slide"><img src="image4.jpg" alt="Image 4"></div>
-            </div>
-        </div>
-    </div>
+            
+                <div class="slide">
+                    <img src="Images\movie1.jpg" alt="Slide 1">
+                </div>
+                <!-- <div class="slide">
+                    <img src="Images\movie6.jpg" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="Images\movie2.jpg" alt="Slide 3">
+                </div> -->
+            
+        </div>    
+    </figure>    
         <section class="content">
             <h2>Popular on Netflix</h2>
-            <div class="movie-grid">
+            <ul>
                 <div class="movie">
-                    <img src="Images\movie1.jpg" alt="Movie 1">
+                    <img src="Images\movie8.jpg" alt="Movie 1">
                 </div>
                 <div class="movie">
                     <img src="Images\movie2.jpg" alt="Movie 2">
@@ -52,8 +64,11 @@
                 <div class="movie">
                     <img src="Images\movie5.jpg" alt="Movie 3">
                 </div>
+                <div class="movie">
+                    <img src="Images\movie6.jpg" alt="Movie 3">
+                </div>
                 <!-- Add more movies as needed -->
-            </div>
+            </ul>
         </section>
     </main>
     <footer>

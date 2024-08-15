@@ -1,10 +1,18 @@
-let currentIndex = 0;
+let slideIndex = 0;
+showSlides();
 
-    function showNextSlide() {
-        const slides = document.querySelector('.slides');
-        const totalSlides = document.querySelectorAll('.slide').length;
-        currentIndex = (currentIndex + 1) % totalSlides;
-        slides.style.transform = `translateX(-${currentIndex * 100 / totalSlides}%)`;
+function showSlides() {
+    let slides = document.getElementsByClassName("slide");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 3000); // Change slide every 3 seconds
+}
 
-    setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+function plusSlides(n) {
+    slideIndex += n - 1;
+    showSlides();
+}
