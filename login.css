@@ -3,7 +3,7 @@ body {
     background-color: #020202;
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)) , url(images/header-image.png);
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)) , url(images\header-image.png);
     align-items: center;
     height: 100vh;
     margin: 0;
