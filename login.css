@@ -1,18 +1,19 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #4f0b0b;
+    background-color: #020202;
     display: flex;
     justify-content: center;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)) , url(images/header-image.png);
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
 .login-container {
-    background-color: #f1040450;
+    background-color:rgb(105, 101, 101);
     padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(229, 211, 211, 0.1);
     text-align: center;
     width: 100%;
     max-width: 400px;

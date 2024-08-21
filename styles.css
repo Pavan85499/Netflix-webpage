@@ -7,13 +7,14 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #141414;
+    background-color:black;
     color: #ffffff;
+    margin: 5px;
+    align-items: center;
 }
 /* -----------header section--------- */
 header {
@@ -21,7 +22,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #4f0b0b; 
+    background-color: black; 
+    position: relative;
+    background-size: cover;
 }
 /* ------------netflix logo------------ */
 header div img{
@@ -51,7 +54,7 @@ header nav ul {
 
 header nav ul li button {
     transition: transform 0.2s;
-    background-color: #b32f36;
+    background-color: #e31a24;
     color: #ffffff;
     padding: 10px 20px;
     border-radius: 12px;
@@ -75,14 +78,14 @@ header nav ul li div {
 header nav ul li div input {
     padding: 10px;
     width: 300px;
-    border: 1px solid #b44848;
+    border: 1px solid black;
     border-radius: 50px;
 }
 
 /* --------------section content------------ */
 .content {
     padding: 20px;
-    background-color: #4f0b0b; 
+    background-color: black; 
 }
 
 .content h2 {
@@ -115,12 +118,90 @@ ul .movie img:hover {
     transform: scale(1.1);
 }
 
+/* -------------------features--------------------- */
+.features{
+    padding: 50px 6%;
+    font-size: 22px;
+    width: 100%;
+    align-items: center;
+
+}
+
+.box{
+    box-sizing: border-box;
+    border-bottom:8px solid #fff;
+}
+
+.login-container {
+    background-color:black;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+    
+.rows{
+    
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 100px 0;
+}
+
+.text-column{
+    margin-top: 10px;
+    flex-basis: 50%;
+    margin-bottom: 20px;
+}
+.features-image{
+    flex-basis: 40%;
+    margin-bottom: 15px;
+}
+.features-image img{
+    display: block;
+    width: 90%;
+    height: 100%;
+    margin: auto;
+}
+
+.features h2{
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.features p{
+    font-size: 27px;
+}
+/* secong image slot */
+
+.oppo-text-column{
+    flex-basis: 50%;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+.oppo-features-image{
+    flex-basis: 50%;
+    
+}
+.oppo-features-image img{
+    display: block;
+    width: 85%;
+    height: 100%;
+    margin-left: 5%;
+    margin-top: -35%;
+    margin-left: -5%;
+}
+
+ 
 /* ------------footer content------------- */
 
 footer {
     padding: 20px;
     text-align: center;
-    background-color: #141414;
+    background-color: black;
 }
 
 
