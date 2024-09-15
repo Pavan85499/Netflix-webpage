@@ -236,6 +236,8 @@ footer {
     border-radius: 0px;
 }
 
+/* ------------Slid Motation--------------- */
+
 @keyframes slide {
     0% { transform: translateX(0); }
     25% { transform: translateX(-100%); }
