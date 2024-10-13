@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="icon" href="Images\netflix-logo-png-2616 copy.png">
-    <link rel="stylesheet" href="{{ url_for('static', filename='static/login.css') }}">
+    <link rel="icon" href="/static/Images/netflix-logo2.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/Login.css') }}">
 </head>
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="{{ url_for('login') }}" method="POST">
+        <form action="http://localhost:5000/login" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -21,6 +21,9 @@
             </div>
             <div class="form-group">
                 <button type="submit">Login</button>
+            </div>
+            <div class="form-footer">
+                <p>Don't have an account? <a href="/signup">Sign up</a></p>
             </div>
         </form>
     </div>

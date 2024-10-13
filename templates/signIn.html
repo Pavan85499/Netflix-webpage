@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix India – Create Account</title>
+    <link rel="icon" href="/static/Images/netflix-logo2.png">
+    <link rel="stylesheet" href="/static/css/signIn.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-form">
+            <h2>Create Account</h2>
+            <form action="l" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Create Account</button>
+                </div>
+                <div class="form-footer">
+                    <p>Already have an account? <a href="/login">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
