@@ -13,7 +13,22 @@
             "database": "company",
             "username": "root",
             "password": "8549941566"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "netflix",
+            "database": "netflix",
+            "username": "root",
+            "askForPassword": true
         }
     ],
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "Codegeex.RepoIndex": true
 }

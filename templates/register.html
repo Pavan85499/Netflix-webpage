@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta email="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix India – Create Account</title>
+    <link rel="icon" href="/static/Images/netflix-logo2.png">
+    <link rel="stylesheet" href="/static/css/signIn.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-form">
+            <h2>Create Account</h2>
+            <form action="/register" method="POST">
+                {{form.hidden_tag()}}
+                <div class="form-group">
+                    {{ form.name.label(for="name")}}
+                    {{ form.name(id="name", class="form-control")}}
+
+                    {%if form.name.errors%}
+                    <ul>
+                        <li>{{ error }}</li>
+                    </ul>
+                    {%endif%}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(for="email")}}
+                    {{ form.email(id="email", class="form-control")}}
+
+                    {%if form.email.errors%}
+                    <ul>
+                        <li>{{ error }}</li>
+                    </ul>
+                    {%endif%}
+                </div>
+                <div class="form-group">
+                    {{ form.Password.label(for="Password")}}
+                    {{ form.Password(id="Password", class="form-control")}}
+
+                    {%if form.Password.errors%}
+                    <ul>
+                        <li>{{ error }}</li>
+                    </ul>
+                    {%endif%}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label(for="confirm_password")}}
+                    {{ form.confirm_password(id="confirm_password", class="form-control")}}
+
+                    {%if form.confirm_password.errors%}
+                    <ul>
+                        <li>{{ error }}</li>
+                    </ul>
+                    {%endif%}
+                </div>
+                <div class="form-group">
+                    {{form.submit(class="btn btn-dark mt-4")}}
+                </div>
+                <div class="form-footer">
+                    <p>Already have an account? <a href="/login">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
