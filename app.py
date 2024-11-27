@@ -3,6 +3,10 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
 from flask_mysqldb import MySQL
+from wtforms.validators import InputRequired, Length, ValidationError
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+
 # import bcrypt
 
 app = Flask(__name__)
@@ -16,17 +20,10 @@ app.config['MYSQL_PASSWORD'] = '8549941566'
 app.config['MYSQL_DB'] = 'Netflix'
 app.secret_key = 'your_secret_key_here'  # Secret key for session management
 
-# Password = b"my_secure_Password"
-# confirm_password = b"my_secure_password"
-
-# Generate a salt
-# salt = bcrypt.gensalt()
-
-# Hash the password using the salt
-# Password = bcrypt.hashpw(Password, salt)
-# confirm_password = bcrypt.hashpw(confirm_password, salt)
 
 mysql = MySQL(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 class RegisterForm(FlaskForm):
     name = StringField("Name",validators=[DataRequired()])
@@ -34,6 +31,91 @@ class RegisterForm(FlaskForm):
     Password = PasswordField("Password",validators=[DataRequired()])
     confirm_password = PasswordField("Confirm Password",validators=[DataRequired()])
     submit = SubmitField("Submit")
+
+
+
+
+@app.route('/register', methods=[ 'GET','POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        email = form.email.data
+        Password = form.Password.data
+        confirm_password = form.confirm_password.data  
+        # store data into database
+        cursor = mysql.connection.cursor()
+        cursor.execute("INSERT INTO users (name, email, Password, confirm_password) VALUES (%s, %s, %s, %s)", (name, email, Password, confirm_password))
+        mysql.connect.commit()
+        cursor.close()
+        return redirect(url_for('login'))   
+    return render_template('Register.html', form=form)
+
+# User class for login_manager
+class User(UserMixin):
+    def __init__(self, id, email):
+        self.id = id
+        self.email = email
+@login_manager.user_loader
+def load_user(user_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM users WHERE id = %s", [user_id])
+    user_data = cursor.fetchone()
+    if user_data:
+        return User(id=user_data[0], email=user_data[1])
+    return None
+
+# Define SignIn form using WTForms
+class SignInForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+
+# Route to display login form and handle login logic
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = SignInForm()
+    
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+
+        # Query the database to check user credentials
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM users WHERE email = %s", [email])
+        user_data = cursor.fetchone()
+
+        if user_data and user_data[2] == password:  # Assuming password is stored as plain text (not secure)
+            user = User(id=user_data[0], email=user_data[1])
+            login_user(user)
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Invalid credentials', 'danger')
+
+    return render_template('login.html', form=form)
+
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=100)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=6)])
+
+    # Custom validation for username
+    def validate_username(self, field):
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM users WHERE username = %s", (field.data,))
+        user = cur.fetchone()
+        cur.close()
+        if not user:
+            raise ValidationError('Username does not exist.')
+
+
+
+
+
+
+
+
+
 
 
 @app.route('/')
@@ -48,43 +130,93 @@ def index():
 # userprofile():
 #     return render_template('userprofile.html')
 
-@app.route('/register', methods=[ 'GET','POST'])
-def register():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        name = form.name.data
-        email = form.email.data
-        Password = form.Password.data
-        confirm_password = form.confirm_password.data
-
-        # hashed_password = bcrypt.hash(Password.encode('utf-8'),bcrypt.gensalt())
-        
-        # store data into database
-        cursor = mysql.connection.cursor()
-        cursor.execute("INSERT INTO users (name, email, Password, confirm_password) VALUES (%s, %s, %s, %s)", (name, email, Password, confirm_password))
-        mysql.connect.commit()
-        cursor.close()
-        return redirect(url_for('login'))
-    
-    return render_template('Register.html', form=form)
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        Password = request.form['Password']
-        
-        if username in users and users[username] == Password:
-            session['username'] = username
-            flash('Login successful!', 'success')
-            return redirect(url_for('index'))
-        else:
-            flash('Invalid credentials, please try again.', 'danger')
-            return redirect(url_for('retry'))
-    
-    return render_template('login.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
