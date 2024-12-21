@@ -130,6 +130,28 @@ def index():
 # userprofile():
 #     return render_template('userprofile.html')
 
+<<<<<<< Updated upstream
+=======
+# @app.route('/register', methods=[ 'GET','POST'])
+# def register():
+#     form = RegisterForm()
+#     if form.validate_on_submit():
+#         name = form.name.data
+#         email = form.email.data
+#         Password = form.Password.data
+#         confirm_password = form.confirm_password.data
+
+#         # hashed_password = bcrypt.hash(Password.encode('utf-8'),bcrypt.gensalt())
+        
+#         # store data into database
+#         cursor = mysql.connection.cursor()
+#         cursor.execute("INSERT INTO users (name, email, Password, confirm_password) VALUES (%s, %s, %s, %s)", (name, email, Password, confirm_password))
+#         mysql.connect.commit()
+#         cursor.close()
+#         return redirect(url_for('login'))
+    
+#     return render_template('Register.html', form=form)
+>>>>>>> Stashed changes
 
 
 
@@ -284,3 +306,18 @@ def index():
 #    rows = cur.fetchall();
 #    return render_template("list.html",rows = rows)
 
+@app.route('/signup', methods=['POST'])
+def add_user(): 
+   data = request.get_json()
+   username = data['username'] 
+   email = data['email'] 
+   Password = data['Password']  # Define the Password variable
+   confirm_password = data['confirm_password']
+   cur = mysql.connection.cursor() 
+   cur.execute("INSERT INTO users (id, username, email, Password, confirm_password) VALUES (%s, %s, %s, %s, %s)", (id,username, email, Password, confirm_password))
+   mysql.connection.commit() 
+   cur.close() 
+   return jsonify({"message": "User added successfully!"})
+
+if __name__ == "__main__":
+    app.run(debug=True)
