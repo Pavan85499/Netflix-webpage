@@ -130,8 +130,6 @@ def index():
 # userprofile():
 #     return render_template('userprofile.html')
 
-<<<<<<< Updated upstream
-=======
 # @app.route('/register', methods=[ 'GET','POST'])
 # def register():
 #     form = RegisterForm()
@@ -151,7 +149,6 @@ def index():
 #         return redirect(url_for('login'))
     
 #     return render_template('Register.html', form=form)
->>>>>>> Stashed changes
 
 
 
